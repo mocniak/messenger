@@ -1,4 +1,7 @@
-
+# IntelliJ project files
+.idea
+*.iml
+out
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
