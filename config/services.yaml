@@ -28,3 +28,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Domain\Channels\Email\EmailSender: '@App\Infrastructure\EmailSenderStub'
+    App\Domain\Channels\Sms\SmsSender: '@App\Infrastructure\Sms\TwilioSmsSender'
+    App\Infrastructure\Sms\TwilioSmsSender:
+        arguments:
+            - '%env(resolve:TWILIO_ACCOUNT_ID)%'
+            - '%env(resolve:TWILIO_AUTH_TOKEN)%'
+            - '%env(resolve:TWILIO_PHONE_NUMBER)%'
