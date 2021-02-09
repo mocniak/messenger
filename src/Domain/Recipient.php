@@ -4,17 +4,19 @@ namespace App\Domain;
 class Recipient
 {
     private string $username;
-    /** @var string[] */
-    private array $emails;
+    private ?string $email;
+    private ?PhoneNumber $smsNumber;
 
     public function __construct(string $username)
     {
         $this->username = $username;
+        $this->email = null;
+        $this->smsNumber = null;
     }
 
-    public function addEmail(string $string)
+    public function addEmail(string $email)
     {
-        $this->emails[] = $string;
+        $this->email = $email;
     }
 
     public function username(): string
@@ -22,8 +24,18 @@ class Recipient
         return $this->username;
     }
 
-    public function email(): string
+    public function email(): ?string
     {
-        return reset($this->emails);
+        return $this->email;
+    }
+
+    public function addSmsNumber(PhoneNumber $number)
+    {
+        $this->smsNumber = $number;
+    }
+
+    public function smsNumber(): ?PhoneNumber
+    {
+        return $this->smsNumber;
     }
 }
