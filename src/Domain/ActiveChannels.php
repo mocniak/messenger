@@ -6,11 +6,13 @@ class ActiveChannels
     public const CHANNEL_EMAIL = 'email';
     public const CHANNEL_SMS = 'sms';
     public const ALL_CHANNELS = [self::CHANNEL_EMAIL, self::CHANNEL_SMS];
-    /** @var bool[]  */
+    /** @var bool[] */
     private array $channels;
+    private ChannelFactory $factory;
 
-    public function __construct()
+    public function __construct(ChannelFactory $factory)
     {
+        $this->factory = $factory;
         $this->channels = [
             self::CHANNEL_SMS => true,
             self::CHANNEL_EMAIL => true,
@@ -27,4 +29,17 @@ class ActiveChannels
         return $this->channels[$channelName];
     }
 
+    /**
+     * @return Channel[]
+     */
+    public function getEnabled(): array
+    {
+        $enabledChannels = [];
+        foreach ($this->channels as $channelName => $isActive) {
+            if ($isActive) {
+                $enabledChannels[] = $this->factory->build($channelName);
+            }
+        }
+        return $enabledChannels;
+    }
 }
