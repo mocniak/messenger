@@ -1,11 +1,11 @@
 <?php
-namespace App\Domain;
+namespace App\Domain\Channels\Email;
+
+use App\Domain\Channel;
+use App\Domain\Recipient;
 
 class EmailChannel implements Channel
 {
-    /**
-     * @var EmailSender
-     */
     private EmailSender $emailSender;
 
     public function __construct(EmailSender $emailSender)

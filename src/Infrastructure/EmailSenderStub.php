@@ -1,7 +1,7 @@
 <?php
 namespace App\Infrastructure;
 
-use App\Domain\EmailSender;
+use App\Domain\Channels\Email\EmailSender;
 
 class EmailSenderStub implements EmailSender
 {

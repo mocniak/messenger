@@ -1,5 +1,7 @@
 <?php
-namespace App\Domain;
+namespace App\Domain\Channels;
+
+use App\Domain\Channel;
 
 class ActiveChannels
 {

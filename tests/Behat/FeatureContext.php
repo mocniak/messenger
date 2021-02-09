@@ -1,7 +1,7 @@
 <?php
 namespace App\Tests\Behat;
 
-use App\Domain\ActiveChannels;
+use App\Domain\Channels\ActiveChannels;
 use App\Domain\EmailInbox;
 use App\Domain\MessengerService;
 use App\Domain\PhoneNumber;
@@ -21,9 +21,6 @@ class FeatureContext implements Context
     private MessengerService $messengerService;
     private EmailInbox $emailInbox;
     private SmsInbox $smsInbox;
-    /**
-     * @var ActiveChannels
-     */
     private ActiveChannels $activeChannels;
 
     public function __construct(

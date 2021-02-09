@@ -1,8 +1,8 @@
 <?php
 namespace App\Infrastructure;
 
+use App\Domain\Channels\Sms\SmsSender;
 use App\Domain\PhoneNumber;
-use App\Domain\SmsSender;
 
 class SmsSenderStub implements SmsSender
 {

@@ -1,5 +1,9 @@
 <?php
-namespace App\Domain;
+namespace App\Domain\Channels;
+
+use App\Domain\Channel;
+use App\Domain\Channels\Email\EmailChannel;
+use App\Domain\Channels\Sms\SmsChannel;
 
 class ChannelFactory
 {

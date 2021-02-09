@@ -1,5 +1,7 @@
 <?php
-namespace App\Domain;
+namespace App\Domain\Channels\Sms;
+
+use App\Domain\PhoneNumber;
 
 interface SmsSender
 {

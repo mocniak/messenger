@@ -1,15 +1,17 @@
 <?php
 namespace App\Domain;
 
+use App\Domain\Channels\ActiveChannels;
+use App\Domain\Channels\ChannelProvider;
+use App\Domain\Channels\Email\EmailSender;
+use App\Domain\Channels\Sms\SmsSender;
+
 class MessengerService
 {
     private RecipientRepository $recipientRepository;
     private EmailSender $emailSender;
     private SmsSender $smsSender;
     private ActiveChannels $activeChannels;
-    /**
-     * @var ChannelProvider
-     */
     private ChannelProvider $channelProvider;
 
     public function __construct(

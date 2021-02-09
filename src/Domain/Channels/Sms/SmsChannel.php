@@ -1,5 +1,8 @@
 <?php
-namespace App\Domain;
+namespace App\Domain\Channels\Sms;
+
+use App\Domain\Channel;
+use App\Domain\Recipient;
 
 class SmsChannel implements Channel
 {
