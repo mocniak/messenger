@@ -1,8 +1,8 @@
 <?php
 namespace App\Infrastructure;
 
+use App\Domain\Channels\Sms\SmsInbox;
 use App\Domain\PhoneNumber;
-use App\Domain\SmsInbox;
 
 class InMemorySmsInbox implements SmsInbox
 {

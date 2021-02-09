@@ -2,12 +2,12 @@
 namespace App\Tests\Behat;
 
 use App\Domain\Channels\ActiveChannels;
-use App\Domain\EmailInbox;
+use App\Domain\Channels\Email\EmailInbox;
+use App\Domain\Channels\Sms\SmsInbox;
 use App\Domain\MessengerService;
 use App\Domain\PhoneNumber;
 use App\Domain\Recipient;
 use App\Domain\RecipientRepository;
-use App\Domain\SmsInbox;
 use Behat\Behat\Context\Context;
 use Webmozart\Assert\Assert;
 

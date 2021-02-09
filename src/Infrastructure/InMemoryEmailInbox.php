@@ -1,7 +1,7 @@
 <?php
 namespace App\Infrastructure;
 
-use App\Domain\EmailInbox;
+use App\Domain\Channels\Email\EmailInbox;
 
 class InMemoryEmailInbox implements EmailInbox
 {
