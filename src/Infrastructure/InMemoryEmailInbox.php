@@ -5,11 +5,16 @@ use App\Domain\EmailInbox;
 
 class InMemoryEmailInbox implements EmailInbox
 {
-    private $emails;
+    private array $emails;
 
-    public function getLastEmail($emailAddress): string
+    public function __construct()
     {
-        return end($this->emails[$emailAddress]);
+        $this->emails = [];
+    }
+
+    public function getLastEmail(string $emailAddress): ?string
+    {
+        return isset($this->emails[$emailAddress]) ? end($this->emails[$emailAddress]) : null;
     }
 
     public function save(string $emailAddress, string $messageContent)

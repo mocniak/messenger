@@ -1,6 +1,7 @@
 <?php
 namespace App\Tests\Behat;
 
+use App\Domain\ActiveChannels;
 use App\Domain\EmailInbox;
 use App\Domain\MessengerService;
 use App\Domain\PhoneNumber;
@@ -20,17 +21,23 @@ class FeatureContext implements Context
     private MessengerService $messengerService;
     private EmailInbox $emailInbox;
     private SmsInbox $smsInbox;
+    /**
+     * @var ActiveChannels
+     */
+    private ActiveChannels $activeChannels;
 
     public function __construct(
         RecipientRepository $recipientRepository,
         MessengerService $messengerService,
         EmailInbox $emailInbox,
-        SmsInbox $smsInbox
+        SmsInbox $smsInbox,
+        ActiveChannels $activeChannels
     ) {
         $this->recipientRepository = $recipientRepository;
         $this->messengerService = $messengerService;
         $this->emailInbox = $emailInbox;
         $this->smsInbox = $smsInbox;
+        $this->activeChannels = $activeChannels;
     }
 
     /**
@@ -85,4 +92,39 @@ class FeatureContext implements Context
         $recipient = $this->recipientRepository->getByUsername($username);
         Assert::eq($this->smsInbox->getLastSms($recipient->smsNumber()), self::MESSAGE_CONTENT);
     }
+
+
+    /**
+     * @Given SMS service is disabled
+     */
+    public function smsServiceIsDisabled()
+    {
+        $this->activeChannels->disable(ActiveChannels::CHANNEL_SMS);
+    }
+
+    /**
+     * @Then recipient :username have NOT received a SMS
+     */
+    public function recipientHaveNotReceivedASms(string $username)
+    {
+        $recipient = $this->recipientRepository->getByUsername($username);
+        Assert::null($this->smsInbox->getLastSms($recipient->smsNumber()));
+    }
+
+    /**
+     * @Given email service is disabled
+     */
+    public function emailServiceIsDisabled()
+    {
+        $this->activeChannels->disable(ActiveChannels::CHANNEL_EMAIL);
+    }
+
+    /**
+     * @Then recipient :username have NOT received an email
+     */
+    public function recipientHaveNotReceivedAnEmail(string $username)
+    {
+        $recipient = $this->recipientRepository->getByUsername($username);
+        Assert::null($this->emailInbox->getLastEmail($recipient->email()));    }
+
 }

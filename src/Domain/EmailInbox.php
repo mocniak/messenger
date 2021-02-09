@@ -3,5 +3,5 @@ namespace App\Domain;
 
 interface EmailInbox
 {
-    public function getLastEmail($username): string;
+    public function getLastEmail(string $username): ?string;
 }

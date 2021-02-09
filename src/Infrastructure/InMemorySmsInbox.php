@@ -8,9 +8,9 @@ class InMemorySmsInbox implements SmsInbox
 {
     private $smses;
 
-    public function getLastSms(PhoneNumber $phoneNumber): string
+    public function getLastSms(PhoneNumber $phoneNumber): ?string
     {
-        return end($this->smses[$phoneNumber->number()]);
+        return isset($this->smses[$phoneNumber->number()]) ? end($this->smses[$phoneNumber->number()]) : null;
     }
 
     public function save(PhoneNumber $phoneNumber, string $messageContent)
