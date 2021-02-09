@@ -21,13 +21,13 @@ class DefaultController
     }
 
     /**
-     * @Route("/notify", name="app_notify")
+     * @Route("/notify/{phoneNumber}", name="app_notify")
      */
-    public function notify(): Response
+    public function notify(string $phoneNumber): Response
     {
         $username = "Test Recipient";
         $recipient = new Recipient($username);
-        $recipient->addSmsNumber(new PhoneNumber("+48790722761"));
+        $recipient->addSmsNumber(new PhoneNumber($phoneNumber));
         $this->recipientRepository->save($recipient);
         $this->messengerService->notify($username, "TestMessage");
         return new Response(
